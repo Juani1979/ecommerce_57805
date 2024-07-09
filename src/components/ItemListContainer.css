@@ -1,0 +1,8 @@
+.item-list-container {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 2rem;
+  }
