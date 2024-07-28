@@ -1,0 +1,23 @@
+.cart-widget {
+  position: relative;
+  display: flex;
+  align-items: center;
+  right: 30px;
+}
+
+.cart-icon {
+  width: 45px;
+  height: 45px;
+}
+
+.cart-notification {
+  position: absolute;
+  top: 0;
+  right: -6px;
+  background-color: #a5e65a;
+  color: #5f7174;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}

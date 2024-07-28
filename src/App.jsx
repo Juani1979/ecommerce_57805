@@ -1,17 +1,25 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import NavBar from './components/NavBar';
-import ItemListContainer from './components/ItemListContainer';
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import NavBar from "./components/navbar/NavBar";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ItemListContainer } from "./components/itemlistcontainer/ItemListContainer";
+import { ItemDetailsContainer } from "./components/itemdetailscontainer/ItemDetailsContainer";
 
 function App() {
   return (
-    <>
-      <div className="background-image">
+    <BrowserRouter>
+      <>
         <NavBar />
-        <ItemListContainer greeting="¡Las mejores bebidas estan en Drink Shop!" greeting1="Deliciosas opciones para cada ocasión." />
-      </div>
-    </>
+        <Routes>
+          <Route path="/" element={<ItemListContainer />} />
+          <Route path="/category/:categoryId" element={<ItemListContainer />} />
+          <Route path="/item/:id" element={<ItemDetailsContainer />} />
+          <Route path="/contact" element={<h1>Contacto</h1>} />
+          <Route path="*" element={<h1>Error 404</h1>} />
+        </Routes>
+      </>
+    </BrowserRouter>
   );
 }
 
