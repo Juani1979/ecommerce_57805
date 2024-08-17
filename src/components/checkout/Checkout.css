@@ -1,0 +1,15 @@
+.botonBorrar {
+  background-color: transparent;
+  color: gray;
+  margin-right: 20px;
+  font-size: 0.8rem;
+}
+
+.botonBorrar:hover {
+  color: #f72dc4;
+}
+
+.imgCheckout {
+  width: 120px;
+  margin: 20px;
+}

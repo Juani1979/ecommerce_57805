@@ -97,7 +97,9 @@ const NavBar = () => {
               </ul>
             </li>
           </ul>
-          <CartWidget className="d-flex" />
+          <NavLink to="/cart">
+            <CartWidget className="d-flex" />
+          </NavLink>
         </div>
       </div>
     </nav>

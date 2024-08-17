@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./ItemListContainer.css";
-import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import {
+  getFirestore,
+  getDocs,
+  where,
+  query,
+  collection,
+} from "firebase/firestore";
 import { Container, Card, Button } from "react-bootstrap";
 import { Message } from "../../components/itemlistcontainer/Message";
-import data from "../../data/products.json";
 import cargando from "../../assets/cargando.gif";
 
 const formatCurrency = (value) => {
@@ -20,36 +25,28 @@ export const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { categoryId } = useParams();
-  const [filteredCategoryId, setFilteredCategoryId] = useState("");
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      setLoading(true);
-      try {
-        // Simulate a delay in loading data
-        const response = await new Promise((resolve) =>
-          setTimeout(() => resolve(data), 2000)
-        );
-        const sortedProducts = response.sort((a, b) =>
-          a.name.localeCompare(b.name)
+    setLoading(true);
+
+    const db = getFirestore();
+    const refCollections = !categoryId
+      ? collection(db, "items")
+      : query(collection(db, "items"), where("categoryId", "==", categoryId));
+
+    getDocs(refCollections)
+      .then((snapshot) => {
+        const allItems = snapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+
+        const sortedItems = allItems.sort((a, b) =>
+          a.title.localeCompare(b.title)
         );
 
-        if (!categoryId) {
-          setProducts(sortedProducts);
-          setFilteredCategoryId("TODOS LOS PRODUCTOS");
-        } else {
-          const itemsFilter = sortedProducts.filter(
-            (i) => i.categoryId === categoryId
-          );
-          setProducts(itemsFilter);
-          setFilteredCategoryId(categoryId);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
+        setProducts(sortedItems);
+      })
+      .finally(() => setLoading(false));
   }, [categoryId]);
 
   if (loading) {
@@ -68,28 +65,30 @@ export const ItemListContainer = () => {
       />
       <div className="row item-list-container">
         <h1 className="titulo">Productos</h1>
-        {filteredCategoryId && (
-          <h2 className="filtered-category-id">
-            {filteredCategoryId.toUpperCase()}
-          </h2>
+        {!categoryId && (
+          <h2 className="tituloCategoria">TODOS LOS PRODUCTOS</h2>
+        )}
+        {categoryId && (
+          <h2 className="tituloCategoria">{categoryId.toUpperCase()}</h2>
         )}
         {products.map((product) => (
-          <div key={product.id} className="col-md-4 mb-4">
+          <div key={product.id} className="col-md-3 mb-4">
             <Card className="h-100">
               <Card.Img
                 variant="top"
-                src={product.img}
-                alt={product.name}
+                src={product.image}
+                alt={product.title}
                 className="card-img"
               />
               <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>{product.description}</Card.Text>
-                <Card.Text>Categoría: {product.categoryId}</Card.Text>
+                <Card.Title className="tituloProd">{product.title}</Card.Title>
+                <Card.Text className="descripcion">
+                  {product.description}
+                </Card.Text>
                 <Card.Text className="precio">
                   {formatCurrency(product.price)}
                 </Card.Text>
-                <Link to={`/item/${product.id}`}>
+                <Link className="verMas" to={`/item/${product.id}`}>
                   <Button variant="primary">Ver Descripción</Button>
                 </Link>
               </Card.Body>

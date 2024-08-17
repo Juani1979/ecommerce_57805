@@ -1,0 +1,50 @@
+.quantity-controls {
+  width: 120px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.quantity-boton {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.quantity-boton:hover {
+  background-color: #f0f0f0; /* Gris claro al pasar el mouse */
+  color: black;
+}
+
+.quantity-boton:active {
+  background-color: #e0e0e0 !important; /* Gris más oscuro cuando se presiona el botón */
+}
+
+.quantity {
+  background-color: transparent;
+  border: 0;
+  color: black;
+  font-size: 1rem;
+  font-weight: 600;
+  flex: 2;
+  text-align: center;
+}
+
+.quantity-disponibles {
+  width: 120px;
+  background-color: transparent;
+  border: 0;
+  color: black;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 3px;
+}
