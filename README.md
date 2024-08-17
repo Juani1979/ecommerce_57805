@@ -30,11 +30,15 @@ Antes de comenzar, asegúrate de tener instalado:
 Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 
 1. **Clonar el repositorio**
+
    git clone https://github.com/Juani1979/ecommerce_57805.git
 
 2. **Instalar dependencias**
+
    cd ecommerce_57805
+
    npm install
 
 3. **Iniciar el servidor de desarrollo**
+
    npm run dev
