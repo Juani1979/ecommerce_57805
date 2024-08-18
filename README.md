@@ -38,6 +38,7 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 2. **Instalar dependencias**
 
    cd ecommerce_57805
+
    npm install
 
 3. **Iniciar el servidor de desarrollo**
