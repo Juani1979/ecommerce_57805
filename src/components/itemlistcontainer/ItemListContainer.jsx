@@ -73,26 +73,28 @@ export const ItemListContainer = () => {
         )}
         {products.map((product) => (
           <div key={product.id} className="col-md-3 mb-4">
-            <Card className="h-100">
-              <Card.Img
-                variant="top"
-                src={product.image}
-                alt={product.title}
-                className="card-img"
-              />
-              <Card.Body>
-                <Card.Title className="tituloProd">{product.title}</Card.Title>
-                <Card.Text className="descripcion">
-                  {product.description}
-                </Card.Text>
-                <Card.Text className="precio">
-                  {formatCurrency(product.price)}
-                </Card.Text>
-                <Link className="verMas" to={`/item/${product.id}`}>
+            <Link to={`/item/${product.id}`} className="card-link">
+              <Card className="h-100">
+                <Card.Img
+                  variant="top"
+                  src={product.image}
+                  alt={product.title}
+                  className="card-img"
+                />
+                <Card.Body>
+                  <Card.Title className="tituloProd">
+                    {product.title}
+                  </Card.Title>
+                  <Card.Text className="descripcion">
+                    {product.description}
+                  </Card.Text>
+                  <Card.Text className="precio">
+                    {formatCurrency(product.price)}
+                  </Card.Text>
                   <Button variant="primary">Ver Descripción</Button>
-                </Link>
-              </Card.Body>
-            </Card>
+                </Card.Body>
+              </Card>
+            </Link>
           </div>
         ))}
       </div>

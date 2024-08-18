@@ -23,7 +23,6 @@ export const ItemDetailsContainer = () => {
         const data = snapshot.data();
         if (data) {
           setProduct({ id: snapshot.id, ...data });
-          // Check if stock is 0 and set quantity to 0
           if (data.stock === 0) {
             setQuantity(0);
           }

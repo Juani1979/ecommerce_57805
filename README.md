@@ -16,7 +16,9 @@
 
 - **React JS** - Biblioteca de JavaScript para construir interfaces de usuario.
 - **Vite** - Herramienta de desarrollo rápida para proyectos de frontend.
+- **React Bootstrap** - Biblioteca de componentes de Bootstrap para React.
 - **Firebase Firestore** - Base de datos NoSQL en tiempo real.
+- **React Icons** - Biblioteca de íconos para React.
 
 ## Pre-requisitos
 
@@ -36,7 +38,6 @@ Sigue estos pasos para ejecutar el proyecto en tu entorno local:
 2. **Instalar dependencias**
 
    cd ecommerce_57805
-
    npm install
 
 3. **Iniciar el servidor de desarrollo**
